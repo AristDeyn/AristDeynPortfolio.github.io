@@ -119,5 +119,25 @@
       lightboxOverlay.style.display = 'none';
     });
   </script>
+  <div id="lightbox-overlay">
+  <img id="lightbox-image" src="" alt="Expanded view">
+</div>
+  <script>
+const lightboxOverlay = document.getElementById('lightbox-overlay');
+const lightboxImage = document.getElementById('lightbox-image');
+const links = document.querySelectorAll('.lightbox-link');
+
+links.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    lightboxImage.src = link.href;    // set the overlay image
+    lightboxOverlay.style.display = 'flex';  // show overlay
+  });
+});
+
+lightboxOverlay.addEventListener('click', () => {
+  lightboxOverlay.style.display = 'none'; // hide overlay when clicked
+});
+</script>
 </body>
 </html>
