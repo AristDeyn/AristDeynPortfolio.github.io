@@ -100,14 +100,6 @@ main {
   transform: scale(1.05);
 }
 
-.image-caption {
-  padding: 0.5rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  color: #999;
-  text-align: center;
-}
-
 footer {
   text-align: center;
   padding: 2rem;
