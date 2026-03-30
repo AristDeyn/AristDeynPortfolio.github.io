@@ -138,15 +138,21 @@ links.forEach(link => {
 lightboxOverlay.addEventListener('click', () => {
   lightboxOverlay.style.display = 'none'; // hide overlay when clicked
 });
-    let scale = 1; // default zoom level
+let scale = 1; // default zoom
 
+// Zoom with scroll wheel
 lightboxOverlay.addEventListener('wheel', e => {
-  e.preventDefault(); // prevent page scrolling
-  const delta = e.deltaY < 0 ? 0.1 : -0.1; // zoom in or out
+  e.preventDefault(); // stop page scrolling
+  const delta = e.deltaY < 0 ? 0.1 : -0.1; // zoom in/out
   scale += delta;
-  if (scale < 0.5) scale = 0.5;  // minimum zoom
-  if (scale > 3) scale = 3;      // maximum zoom
+  if (scale < 0.5) scale = 0.5; // min zoom
+  if (scale > 3) scale = 3;     // max zoom
   lightboxImage.style.transform = `scale(${scale})`;
+}, { passive: false }); // <--- critical part
+    lightboxOverlay.addEventListener('click', () => {
+  lightboxOverlay.style.display = 'none';
+  scale = 1;
+  lightboxImage.style.transform = 'scale(1)';
 });
 </script>
 </body>
