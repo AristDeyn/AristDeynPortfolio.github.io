@@ -150,8 +150,24 @@ lightboxOverlay.addEventListener('wheel', e => {
   translateX -= (offsetX / scale - offsetX / newScale);
   translateY -= (offsetY / scale - offsetY / newScale);
 
-  scale = newScale;
-  lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+  // Get overlay size
+const overlayWidth = lightboxOverlay.clientWidth;
+const overlayHeight = lightboxOverlay.clientHeight;
+
+// Calculate new image size after scaling
+const imgWidth = rect.width * newScale;
+const imgHeight = rect.height * newScale;
+
+// Allow movement in all directions (no clipping)
+const maxX = (imgWidth - overlayWidth) / 2;
+const maxY = (imgHeight - overlayHeight) / 2;
+
+// Clamp translation so image doesn't get stuck or drift infinitely
+translateX = Math.max(Math.min(translateX, maxX), -maxX);
+translateY = Math.max(Math.min(translateY, maxY), -maxY);
+
+scale = newScale;
+lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
 
   // reset to center if fully zoomed out
   if (scale <= 1) {
