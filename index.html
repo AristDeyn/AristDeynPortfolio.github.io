@@ -115,8 +115,8 @@ links.forEach(link => {
     img.src = link.href;
     scale = 1;
     img.style.transform = `scale(${scale})`;
+    img.style.transformOrigin = 'center center';
     overlay.style.display = 'flex';
-    img.style.transformOrigin = 'center center'; // reset origin
   });
 });
 
@@ -126,6 +126,7 @@ overlay.addEventListener('click', e => {
     overlay.style.display = 'none';
     scale = 1;
     img.style.transform = `scale(1)`;
+    img.style.transformOrigin = 'center center';
   }
 });
 
@@ -138,14 +139,23 @@ overlay.addEventListener('wheel', e => {
   const offsetX = e.clientX - rect.left;
   const offsetY = e.clientY - rect.top;
 
-  // Set transform-origin to mouse position
-  img.style.transformOrigin = `${offsetX}px ${offsetY}px`;
+  // Adjust transform-origin if zooming in
+  if (e.deltaY < 0) { 
+    img.style.transformOrigin = `${offsetX}px ${offsetY}px`;
+  }
 
   // Adjust scale
   const delta = e.deltaY < 0 ? 0.1 : -0.1;
   scale += delta;
   scale = Math.min(Math.max(scale, 0.5), 3); // clamp scale
   img.style.transform = `scale(${scale})`;
+
+  // If zoomed out to original size or smaller, recenter
+  if (scale <= 1) {
+    scale = 1;
+    img.style.transform = `scale(1)`;
+    img.style.transformOrigin = 'center center';
+  }
 }, { passive: false });
 </script>
 </body>
