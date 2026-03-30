@@ -20,14 +20,14 @@ body {
 
 header {
   text-align: left;
-  width: 320px;                 /* fixed column width */
+  width: 320px;
   padding: 3rem 2rem;
   background: #1a1a1a;
   border-right: 1px solid #333;
 
   position: sticky;
   top: 0;
-  height: 100vh;                /* full height */
+  height: 100vh;
 }
 
 header h1 {
@@ -39,16 +39,21 @@ header h1 {
   margin-bottom: 0.5rem;
 }
 
+/* FIXED + JUSTIFIED */
 header p {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   color: #aaa;
   margin-top: 1rem;
   line-height: 1.5;
+
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 main {
-  flex: 1;                      /* takes remaining space */
+  flex: 1;
   padding: 3rem 2rem;
   max-width: 900px;
   margin: 0 auto;
@@ -67,13 +72,17 @@ main {
   letter-spacing: -0.01em;
 }
 
+/* JUSTIFIED DESCRIPTION (OVERRIDES CENTERING) */
 .section-description {
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   color: #b5b5b5;
   max-width: 700px;
   margin: 0 auto 1.5rem auto;
-  text-align: center;
+
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .image-grid {
@@ -109,7 +118,7 @@ footer {
   font-size: 0.9rem;
 }
 
-
+/* Mobile */
 @media (max-width: 800px) {
   .layout {
     flex-direction: column;
