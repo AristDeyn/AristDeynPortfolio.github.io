@@ -22,7 +22,7 @@ body {
 header {
   display: flex;
   flex-direction: column;
-  justify-content: center;      /* vertically centers content in viewport initially */
+
   text-align: left;
   width: 320px;
   padding: 2rem;
