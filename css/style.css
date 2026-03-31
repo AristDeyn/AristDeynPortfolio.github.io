@@ -54,7 +54,27 @@ header p {
   text-justify: inter-word;
   hyphens: auto;
 }
+/* Header quotes */
+.header-quote {
+  font-family: 'Georgia', serif;   /* A readable serif for quotes */
+  font-style: italic;
+  font-size: 0.95rem;              /* Slightly smaller than main text */
+  line-height: 1.4;                /* Tight enough for compact look */
+  color: #dcdcdc;
+  margin: 1.5rem 0;
+  padding-left: 1rem;              /* optional subtle indentation */
+  border-left: 3px solid #555;     /* subtle visual marker for blockquote */
+}
 
+.header-quote cite {
+  display: block;
+  font-family: 'Courier New', monospace; /* Different font for citation */
+  font-style: normal;
+  font-weight: 500;
+  color: #aaa;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+}
 /* MAIN */
 main {
   flex: 1;
