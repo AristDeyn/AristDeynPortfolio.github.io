@@ -43,42 +43,42 @@ header h1 {
   margin-bottom: 0.5rem;
 }
 
+/* ── HEADER DESCRIPTION ── */
 header p {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
-  color: #aaa;
+  color: #e0e0e0;           /* main description slightly brighter than quotes */
   margin-top: 1rem;
-  line-height: 1.5;
-
-  text-align: justify;
-  text-justify: inter-word;
+  line-height: 1.6;
+  text-align: left;          /* remove justified block */
   hyphens: auto;
 }
+
 /* ── HEADER QUOTES ── */
 .header-quote {
-  font-family: 'Georgia', serif;       /* elegant, readable serif */
+  font-family: 'Georgia', serif;       /* elegant serif */
   font-style: italic;
-  font-size: 0.92rem;                  /* slightly smaller than main text */
+  font-size: 0.82rem;                  /* smaller than description */
   line-height: 1.45;                   /* airy but compact */
-  color: #cfcfcf;                      /* softer than main text for secondary feel */
-  margin: 2rem 0;                       /* clear separation between quotes */
-  padding-left: 1rem;
-  border-left: 3px solid #555;         /* subtle visual marker */
+  color: #888;                          /* softer than description */
+  margin: 2rem 0 1rem 0;                /* spacing from other elements */
+  padding-left: 1rem;                  /* subtle indent */
+  border-left: 2px solid #555;        /* subtle marker */
 }
 
 .header-quote + .header-quote {
-  margin-top: 1.5rem;                  /* extra separation between two quotes */
+  margin-top: 2rem;                     /* clear separation between two quotes */
 }
 
 .header-quote cite {
   display: block;
-  font-family: 'Courier New', monospace;  /* differentiates citation from quote */
+  font-family: 'Courier New', monospace;  /* distinct for citation */
   font-style: normal;
-  font-weight: 500;
-  color: #999;                            /* slightly dimmer than quote */
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
+  font-weight: 400;
+  color: #666;                            /* dimmer than quote text */
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.3px;
 }
 /* MAIN */
 main {
