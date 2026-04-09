@@ -174,8 +174,8 @@ footer {
 }
 
 #lightbox-image {
-  max-width: 90vw;   /* fit within 90% of viewport width */
-  max-height: 90vh;  /* fit within 90% of viewport height */
+  max-width: 120vw;   /* fit within 90% of viewport width */
+  max-height: 120vh;  /* fit within 90% of viewport height */
   width: auto;
   height: auto;
   will-change: transform;
