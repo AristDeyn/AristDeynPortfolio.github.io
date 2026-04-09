@@ -147,7 +147,19 @@ lightboxOverlay.addEventListener('click', () => {
 
 // Zoom with scroll wheel around cursor
 lightboxOverlay.addEventListener('wheel', e => {
-  e.preventDefault();
+links.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    lightboxImage.src = this.href;
+    lightboxOverlay.style.display = 'flex';
+
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
+    lightboxImage.style.transform = 'translate(0,0) scale(1)';
+  });
+});
 
   const rect = lightboxImage.getBoundingClientRect();
   const offsetX = e.clientX - rect.left;
