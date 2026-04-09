@@ -86,60 +86,97 @@
   </div>
 
   <!-- LIGHTBOX SCRIPT -->
-  <script>
-    const lightboxOverlay = document.getElementById('lightbox-overlay');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const links = document.querySelectorAll('.lightbox-link');
+<script>
+const lightboxOverlay = document.getElementById('lightbox-overlay');
+const lightboxImage = document.getElementById('lightbox-image');
+const links = document.querySelectorAll('.lightbox-link');
 
-    let scale = 1;
-    let translateX = 0;
-    let translateY = 0;
+let scale = 1;
+let translateX = 0;
+let translateY = 0;
 
-    links.forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        lightboxImage.src = this.href;
-        lightboxOverlay.style.display = 'flex';
-        scale = 1; translateX = 0; translateY = 0;
-        lightboxImage.style.transform = 'translate(0,0) scale(1)';
-      });
-    });
+let isDragging = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let dragTranslateX = 0;
+let dragTranslateY = 0;
 
-    lightboxOverlay.addEventListener('click', (e) => {
-      if (e.target !== lightboxOverlay) return;
-      lightboxOverlay.style.display = 'none';
-    });
+// Open lightbox
+links.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    lightboxImage.src = this.href;
+    lightboxOverlay.style.display = 'flex';
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
+    lightboxImage.style.transform = 'translate(0,0) scale(1)';
+  });
+});
 
-    lightboxOverlay.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      if (!lightboxImage.src) return;
+// Close lightbox
+lightboxOverlay.addEventListener('click', e => {
+  if (e.target !== lightboxOverlay) return;
+  lightboxOverlay.style.display = 'none';
+  scale = 1; translateX = 0; translateY = 0;
+  lightboxImage.style.transform = 'translate(0,0) scale(1)';
+});
 
-      const rect = lightboxImage.getBoundingClientRect();
-      const offsetX = e.clientX - rect.left;
-      const offsetY = e.clientY - rect.top;
-      const delta = e.deltaY < 0 ? 0.05 : -0.05;
+// Zoom with scroll
+lightboxOverlay.addEventListener('wheel', e => {
+  e.preventDefault();
+  if (!lightboxImage.src) return;
 
-      const naturalWidth = lightboxImage.naturalWidth;
-      const naturalHeight = lightboxImage.naturalHeight;
-      if (!naturalWidth || !naturalHeight) return;
+  const rect = lightboxImage.getBoundingClientRect();
+  const offsetX = e.clientX - rect.left;
+  const offsetY = e.clientY - rect.top;
+  const delta = e.deltaY < 0 ? 0.05 : -0.05;
 
-      const fittedWidth = Math.min(window.innerWidth * 0.9, naturalWidth);
-      const fittedHeight = Math.min(window.innerHeight * 0.9, naturalHeight);
-      const maxScale = Math.max(naturalWidth / fittedWidth, naturalHeight / fittedHeight);
+  const naturalWidth = lightboxImage.naturalWidth;
+  const naturalHeight = lightboxImage.naturalHeight;
+  if (!naturalWidth || !naturalHeight) return;
 
-      const newScale = Math.min(Math.max(scale + delta, 1), maxScale);
+  const fittedWidth = Math.min(window.innerWidth * 0.9, naturalWidth);
+  const fittedHeight = Math.min(window.innerHeight * 0.9, naturalHeight);
+  const maxScale = Math.max(naturalWidth / fittedWidth, naturalHeight / fittedHeight);
 
-      translateX -= (offsetX / scale - offsetX / newScale);
-      translateY -= (offsetY / scale - offsetY / newScale);
+  const newScale = Math.min(Math.max(scale + delta, 1), maxScale);
 
-      scale = newScale;
-      lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+  translateX -= (offsetX / scale - offsetX / newScale);
+  translateY -= (offsetY / scale - offsetY / newScale);
 
-      if (scale <= 1) {
-        scale = 1; translateX = 0; translateY = 0;
-        lightboxImage.style.transform = 'translate(0,0) scale(1)';
-      }
-    }, { passive: false });
-  </script>
+  scale = newScale;
+  lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+  if (scale <= 1) {
+    scale = 1; translateX = 0; translateY = 0;
+    lightboxImage.style.transform = 'translate(0,0) scale(1)';
+  }
+}, { passive: false });
+
+// Drag/pan functionality
+lightboxImage.addEventListener('mousedown', e => {
+  if (scale <= 1) return; // only pan when zoomed
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  dragTranslateX = translateX;
+  dragTranslateY = translateY;
+  lightboxOverlay.style.cursor = 'grabbing';
+});
+
+window.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  translateX = dragTranslateX + (e.clientX - dragStartX);
+  translateY = dragTranslateY + (e.clientY - dragStartY);
+  lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+});
+
+window.addEventListener('mouseup', () => {
+  if (!isDragging) return;
+  isDragging = false;
+  lightboxOverlay.style.cursor = 'zoom-in';
+});
+</script>
 </body>
 </html>
