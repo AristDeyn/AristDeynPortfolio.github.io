@@ -116,6 +116,28 @@ footer {
 @media (max-width: 800px) {
   .layout { flex-direction: column; }
   header { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #333; }
+  header::after {
+    content: "↓ scroll";
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: #777;
+    letter-spacing: 0.05em;
+  }
+   header {
+    position: relative;
+    z-index: 2;
+    border-bottom: 1px solid #333;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    background: #1f1f1f;
+  }
+   .layout {
+    background: #1f1f1f;
+  }
 }
 
 /* LIGHTBOX */
