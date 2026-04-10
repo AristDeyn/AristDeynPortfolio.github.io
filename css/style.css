@@ -145,3 +145,25 @@ footer {
   cursor: grab;
   user-select: none;
 }
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+
+  z-index: 1001;
+  user-select: none;
+}
+
+#prev-btn { left: 20px; }
+#next-btn { right: 20px; }
+
+.lightbox-nav:hover {
+  background: rgba(0,0,0,0.7);
+}
