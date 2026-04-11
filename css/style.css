@@ -199,3 +199,21 @@ footer {
 .lightbox-nav:hover {
   background: rgba(0,0,0,0.7);
 }
+
+
+/* ── IMAGE TITLES (SUBTLE, ALWAYS VISIBLE) ── */
+.image-title {
+  margin-top: 0.35rem;
+
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #6f6f6f;     /* low contrast but readable */
+  font-weight: 400;
+}
+
+/* Slight emphasis on interaction */
+.image-item:hover .image-title {
+  color: #a0a0a0;
+}
