@@ -280,11 +280,12 @@ footer {
 
 
 .sequential-grid {
-  display: flex;
+  display: flex !important;
   overflow-x: auto;
   gap: 1rem;
 }
 
 .sequential-grid .image-item {
   flex: 0 0 calc(33.333% - 0.67rem);
+  min-width: calc(33.333% - 0.67rem);
 }
