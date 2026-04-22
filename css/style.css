@@ -280,8 +280,6 @@ footer {
 
 
 
-  .sequential-grid {
+.sequential-grid {
   display: grid !important;
-  justify-content: center;
 }
-
