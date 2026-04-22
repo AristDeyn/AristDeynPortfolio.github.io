@@ -56,7 +56,7 @@ header p {
 main {
   flex: 1;
   padding: 3rem 2rem;
-  max-width: 900px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -278,14 +278,6 @@ footer {
 
 
 
-
 .sequential-grid {
-  display: flex !important;
-  overflow-x: auto;
-  gap: 1rem;
-}
-
-.sequential-grid .image-item {
-  flex: 0 0 calc(33.333% - 0.67rem);
-  min-width: calc(33.333% - 0.67rem);
+  display: grid !important;
 }
