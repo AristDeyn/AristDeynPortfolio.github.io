@@ -283,3 +283,7 @@ footer {
 .sequential-grid {
   display: grid !important;
 }
+
+.wide-item {
+  grid-column: span 2;
+}
